@@ -27,6 +27,9 @@ export const NavigationSheet = () => {
         <NavMenu orientation="vertical" className="mt-12" />
 
         <div className="mt-8 space-y-4">
+          <Button asChild variant="outline" className="w-full">
+            <Link href="/login">登录</Link>
+          </Button>
           <Button asChild className="w-full">
             <Link href="/chat">智能助手</Link>
           </Button>

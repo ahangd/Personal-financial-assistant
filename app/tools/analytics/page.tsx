@@ -5,14 +5,16 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 
 import { Navbar } from "@/components/navbar"
+import { RequireAuth } from "@/components/auth/RequireAuth"
 import { PortfolioAnalytics } from "@/components/PortfolioAnalytics"
 
 export default function AnalyticsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="mx-auto max-w-5xl px-4 py-10">
-        <Link
+      <RequireAuth>
+        <main className="mx-auto max-w-5xl px-4 py-10">
+          <Link
           href="/"
           className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
         >
@@ -28,7 +30,8 @@ export default function AnalyticsPage() {
         </div>
 
         <PortfolioAnalytics />
-      </main>
+        </main>
+      </RequireAuth>
     </div>
   )
 }

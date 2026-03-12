@@ -15,6 +15,7 @@ import { ensureDefaultPortfolio, insertOrder } from "@/lib/repositories"
 import { getHistoricalData } from "@/lib/marketData"
 import { applyOrder, calcPortfolioMetrics, type PortfolioState, type Side } from "@/lib/portfolioEngine"
 import { RiskOrderPanel } from "@/components/RiskOrderPanel"
+import { RequireAuth } from "@/components/auth/RequireAuth"
 
 function formatMoneyWan(v: number) {
   return `${(v / 10_000).toLocaleString("zh-CN", { maximumFractionDigits: 2 })}万`
@@ -117,7 +118,8 @@ export default function PaperTradingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="mx-auto max-w-5xl px-4 py-10">
+      <RequireAuth>
+        <main className="mx-auto max-w-5xl px-4 py-10">
         <Link
           href="/"
           className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -236,7 +238,7 @@ export default function PaperTradingPage() {
             </Card>
           </div>
         </div>
-      </main>
+      </RequireAuth>
     </div>
   )
 }

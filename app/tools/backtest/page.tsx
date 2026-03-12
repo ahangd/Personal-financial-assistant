@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query"
 import { getHistoricalData } from "@/lib/marketData"
 import { runBacktest, type StrategyType } from "@/lib/backtestEngine"
 import { BacktestEngineView } from "@/components/BacktestEngine"
+import { RequireAuth } from "@/components/auth/RequireAuth"
 
 function formatPct(v: number) {
   return `${(v * 100).toFixed(2)}%`
@@ -55,7 +56,8 @@ export default function BacktestPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="mx-auto max-w-5xl px-4 py-10">
+      <RequireAuth>
+        <main className="mx-auto max-w-5xl px-4 py-10">
         <Link
           href="/"
           className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
@@ -177,7 +179,7 @@ export default function BacktestPage() {
             </Card>
           </div>
         </div>
-      </main>
+      </RequireAuth>
     </div>
   )
 }

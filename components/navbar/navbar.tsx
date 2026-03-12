@@ -19,6 +19,9 @@ const Navbar = () => {
 
         <div className="flex items-center gap-3">
           <ThemeToggle />
+          <Button asChild variant="outline" className="hidden xs:inline-flex">
+            <Link href="/login">登录</Link>
+          </Button>
           <Button asChild className="hidden xs:inline-flex">
             <Link href="/chat">智能助手</Link>
           </Button>

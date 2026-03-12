@@ -6,6 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import { RequireAuth } from "@/components/auth/RequireAuth";
 import { ArrowLeft } from "lucide-react";
 
 interface MonthPoint {
@@ -107,6 +108,7 @@ export default function DCACalculatorPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
+      <RequireAuth>
       <div className="max-w-lg mx-auto px-4 py-12">
         <Link
           href="/tools"
@@ -283,6 +285,7 @@ export default function DCACalculatorPage() {
           </>
         )}
       </div>
+      </RequireAuth>
     </div>
   );
 }

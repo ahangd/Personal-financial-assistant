@@ -63,29 +63,47 @@ export function RiskOrderPanel({ symbol, latestPrice, onSubmit }: Props) {
         </div>
 
         <div className="flex gap-2">
-          <Button size="sm" variant={side === "BUY" ? "default" : "outline"} onClick={() => setSide("BUY")}>
+          <Button
+            size="sm"
+            variant={side === "BUY" ? "default" : "outline"}
+            className="flex-1 rounded-full"
+            onClick={() => setSide("BUY")}
+          >
             买入
           </Button>
-          <Button size="sm" variant={side === "SELL" ? "default" : "outline"} onClick={() => setSide("SELL")}>
+          <Button
+            size="sm"
+            variant={side === "SELL" ? "default" : "outline"}
+            className="flex-1 rounded-full"
+            onClick={() => setSide("SELL")}
+          >
             卖出
           </Button>
         </div>
 
-        <div className="flex flex-wrap gap-2">
-          {(["MARKET", "LIMIT", "STOP_LOSS", "TAKE_PROFIT"] as const).map((t) => (
-            <Button
-              key={t}
-              type="button"
-              size="xs"
-              variant={type === t ? "default" : "outline"}
-              onClick={() => setType(t)}
-            >
-              {t === "MARKET" && "市价"}
-              {t === "LIMIT" && "限价"}
-              {t === "STOP_LOSS" && "止损单"}
-              {t === "TAKE_PROFIT" && "止盈单"}
-            </Button>
-          ))}
+        <div className="rounded-full bg-muted p-1 text-xs">
+          <div className="grid grid-cols-4 gap-1">
+            {(["MARKET", "LIMIT", "STOP_LOSS", "TAKE_PROFIT"] as const).map((t) => {
+              const active = type === t
+              return (
+                <Button
+                  key={t}
+                  type="button"
+                  size="sm"
+                  variant={active ? "default" : "ghost"}
+                  className={`h-8 rounded-full px-2 text-[11px] font-medium ${
+                    active ? "shadow-sm" : "text-muted-foreground hover:bg-muted"
+                  }`}
+                  onClick={() => setType(t)}
+                >
+                  {t === "MARKET" && "市价"}
+                  {t === "LIMIT" && "限价"}
+                  {t === "STOP_LOSS" && "止损单"}
+                  {t === "TAKE_PROFIT" && "止盈单"}
+                </Button>
+              )
+            })}
+          </div>
         </div>
 
         <div className="grid grid-cols-2 gap-3">
