@@ -12,7 +12,8 @@ import {
 } from "@/components/ui/sheet";
 import { Navbar } from "@/components/navbar";
 import { RequireAuth } from "@/components/auth/RequireAuth";
-import { MessageCircle, Send, History, Loader2, AlertCircle } from "lucide-react";
+import Link from "next/link";
+import { MessageCircle, Send, History, Loader2, AlertCircle, ArrowLeft } from "lucide-react";
 import {
   getChatHistory,
   saveConversation,
@@ -161,6 +162,13 @@ export default function ChatPage() {
       <Navbar />
       <RequireAuth>
         <div className="flex-1 flex flex-col max-w-3xl mx-auto w-full px-4 py-6">
+        <Link
+          href="/"
+          className="mb-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"
+        >
+          <ArrowLeft className="h-4 w-4" />
+          返回主页
+        </Link>
         <div className="flex items-center justify-between mb-6">
           <h1 className="text-xl font-semibold flex items-center gap-2">
             <MessageCircle className="h-5 w-5" />

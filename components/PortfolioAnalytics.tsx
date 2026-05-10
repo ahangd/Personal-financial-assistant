@@ -183,8 +183,8 @@ export function PortfolioAnalytics() {
         <CardContent>
           {pnlPieData.length ? (
             <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
-              <div className="h-52 w-52">
-                <ResponsiveContainer>
+              <div className="h-52 w-52 min-w-0">
+                <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       data={pnlPieData}

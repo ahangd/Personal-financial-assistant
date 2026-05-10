@@ -73,6 +73,11 @@ function CustomTooltip({
 export function InvestmentChart({ data, milestones }: Props) {
   const fullscreenRef = React.useRef<HTMLDivElement | null>(null)
   const [isFullscreen, setIsFullscreen] = React.useState(false)
+  const [isMounted, setIsMounted] = React.useState(false)
+
+  React.useEffect(() => {
+    setIsMounted(true)
+  }, [])
 
   React.useEffect(() => {
     const handler = () => {
@@ -218,6 +223,7 @@ export function InvestmentChart({ data, milestones }: Props) {
               setHoverIndex(null)
             }}
           >
+            {isMounted ? (
             <ResponsiveContainer width="100%" height="100%">
               <ComposedChart
                 data={data}
@@ -345,10 +351,12 @@ export function InvestmentChart({ data, milestones }: Props) {
                 ))}
               </ComposedChart>
             </ResponsiveContainer>
+            ) : (
+              <div className="h-full w-full" />
+            )}
           </div>
         </CardContent>
       </Card>
     </div>
   )
 }
-

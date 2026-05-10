@@ -1,3 +1,6 @@
+import Link from "next/link";
+
+import { AuthGateLink } from "@/components/auth/AuthGateLink";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -7,31 +10,37 @@ import {
 } from "@/components/ui/sheet";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Menu } from "lucide-react";
-import { Logo } from "./logo";
+
 import { NavMenu } from "./nav-menu";
-import Link from "next/link";
 
 export const NavigationSheet = () => {
   return (
     <Sheet>
       <VisuallyHidden>
-        <SheetTitle>导航菜单</SheetTitle>
+        <SheetTitle>{"\u5bfc\u822a\u83dc\u5355"}</SheetTitle>
       </VisuallyHidden>
       <SheetTrigger asChild>
-        <Button variant="outline" size="icon">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-9 w-9 rounded-full border-0 bg-transparent text-[#0B0B0B] shadow-none hover:bg-transparent"
+        >
           <Menu />
         </Button>
       </SheetTrigger>
-      <SheetContent>
-        <Logo />
-        <NavMenu orientation="vertical" className="mt-12" />
-
+      <SheetContent className="bg-white px-6 pt-6">
+        <Link href="/" className="text-lg font-medium text-[#0B0B0B]">
+          FinLounge
+        </Link>
+        <NavMenu orientation="vertical" className="mt-10" />
         <div className="mt-8 space-y-4">
-          <Button asChild variant="outline" className="w-full">
-            <Link href="/login">登录</Link>
-          </Button>
-          <Button asChild className="w-full">
-            <Link href="/chat">智能助手</Link>
+          <Button
+            asChild
+            className="h-11 w-full rounded-xl bg-[#0B0B0B] text-sm shadow-none"
+          >
+            <AuthGateLink href="/chat">
+              {"\u8fdb\u5165\u52a9\u624b"}
+            </AuthGateLink>
           </Button>
         </div>
       </SheetContent>

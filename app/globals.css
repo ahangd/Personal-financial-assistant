@@ -74,10 +74,56 @@
     @apply scroll-smooth;
   }
   body {
-    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system,
+    font-family: ui-sans-serif, system-ui, -apple-system,
       BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto,
       "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB",
       "Microsoft YaHei", "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
     @apply bg-background text-foreground;
   }
+}
+
+@keyframes hero-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) rotate(0deg)
+      scale(0.14);
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%)
+      translate(var(--tx, 0px), var(--ty, 0px))
+      rotate(var(--rot, 0deg)) scale(1);
+  }
+}
+
+@keyframes hero-float {
+  0% {
+    transform: translate(-50%, -50%)
+      translate(var(--tx, 0px), var(--ty, 0px))
+      rotate(var(--rot, 0deg)) scale(1);
+  }
+  100% {
+    transform: translate(-50%, -50%)
+      translate(
+        calc(var(--tx, 0px) + var(--fx, 0px)),
+        calc(var(--ty, 0px) + var(--fy, 0px))
+      )
+      rotate(calc(var(--rot, 0deg) + var(--frot, 0deg))) scale(1);
+  }
+}
+
+.hero-burst-piece {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  opacity: 0;
+  animation:
+    hero-burst 1.05s cubic-bezier(0.16, 0.84, 0.32, 1) var(--delay, 0ms)
+      forwards,
+    hero-float var(--float-duration, 8s) ease-in-out
+      calc(var(--delay, 0ms) + 1.05s) infinite alternate;
+  will-change: transform, opacity;
 }

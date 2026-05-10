@@ -1,3 +1,4 @@
+import { AuthGateLink } from "@/components/auth/AuthGateLink";
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -12,37 +13,62 @@ export const NavMenu = (props: NavigationMenuProps) => (
     <NavigationMenuList className="gap-6 space-x-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-start">
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/">首页</Link>
+          <Link
+            href="/"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u9996\u9875"}
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/chat">智能助手</Link>
+          <AuthGateLink
+            href="/chat"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u667a\u80fd\u52a9\u624b"}
+          </AuthGateLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/knowledge">理财百科</Link>
+          <Link
+            href="/knowledge"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u7406\u8d22\u767e\u79d1"}
+          </Link>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/tools">理财工具</Link>
+          <AuthGateLink
+            href="/tools/paper"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u6a21\u62df\u76d8"}
+          </AuthGateLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/course">投资第一课</Link>
+          <AuthGateLink
+            href="/tools/backtest"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u5386\u53f2\u56de\u6d4b"}
+          </AuthGateLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
       <NavigationMenuItem>
         <NavigationMenuLink asChild>
-          <Link href="/#features">功能特性</Link>
-        </NavigationMenuLink>
-      </NavigationMenuItem>
-      <NavigationMenuItem>
-        <NavigationMenuLink asChild>
-          <Link href="/#faq">常见问题</Link>
+          <AuthGateLink
+            href="/tools"
+            className="text-sm text-[#6C6C6C] transition-colors hover:text-[#0B0B0B]"
+          >
+            {"\u5de5\u5177"}
+          </AuthGateLink>
         </NavigationMenuLink>
       </NavigationMenuItem>
     </NavigationMenuList>

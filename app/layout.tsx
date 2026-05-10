@@ -1,40 +1,40 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
+
 import { Providers } from "./providers";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "理财知识网站 - 智能理财助手与理财百科",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+  ),
+  title: "\u7406\u8d22\u77e5\u8bc6\u7f51\u7ad9 - \u667a\u80fd\u7406\u8d22\u52a9\u624b\u4e0e\u7406\u8d22\u767e\u79d1",
   description:
-    "系统学习理财知识，AI 智能助手解答理财问题，复利计算器、定投模拟等实用工具。专注教育，建立正确投资观念。",
+    "\u7cfb\u7edf\u5b66\u4e60\u7406\u8d22\u77e5\u8bc6\uff0cAI \u667a\u80fd\u52a9\u624b\u89e3\u7b54\u7406\u8d22\u95ee\u9898\uff0c\u590d\u5229\u8ba1\u7b97\u5668\u3001\u5b9a\u6295\u6a21\u62df\u7b49\u5b9e\u7528\u5de5\u5177\u3002\u4e13\u6ce8\u6559\u80b2\uff0c\u5efa\u7acb\u6b63\u786e\u6295\u8d44\u89c2\u5ff5\u3002",
   keywords: [
-    "理财知识",
-    "理财百科",
-    "智能理财助手",
-    "复利计算器",
-    "定投",
-    "理财入门",
-    "投资知识",
+    "\u7406\u8d22\u77e5\u8bc6",
+    "\u7406\u8d22\u767e\u79d1",
+    "\u667a\u80fd\u7406\u8d22\u52a9\u624b",
+    "\u590d\u5229\u8ba1\u7b97\u5668",
+    "\u5b9a\u6295",
+    "\u7406\u8d22\u5165\u95e8",
+    "\u6295\u8d44\u77e5\u8bc6",
   ],
   openGraph: {
     type: "website",
-    siteName: "理财知识网站",
+    siteName: "\u7406\u8d22\u77e5\u8bc6\u7f51\u7ad9",
     locale: "zh_CN",
-    title: "理财知识网站 - 智能理财助手与理财百科",
+    title:
+      "\u7406\u8d22\u77e5\u8bc6\u7f51\u7ad9 - \u667a\u80fd\u7406\u8d22\u52a9\u624b\u4e0e\u7406\u8d22\u767e\u79d1",
     description:
-      "系统学习理财知识，AI 智能助手解答理财问题，实用理财工具。",
+      "\u7cfb\u7edf\u5b66\u4e60\u7406\u8d22\u77e5\u8bc6\uff0cAI \u667a\u80fd\u52a9\u624b\u89e3\u7b54\u7406\u8d22\u95ee\u9898\uff0c\u5b9e\u7528\u7406\u8d22\u5de5\u5177\u3002",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Shadcn UI 落地页预览",
+        alt: "FinLounge preview",
       },
     ],
   },
@@ -94,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="zh" suppressHydrationWarning>
       <body
-        className={`${geistSans.className} antialiased [text-rendering:optimizeLegibility] [font-smooth:always]`}
+        className="antialiased [text-rendering:optimizeLegibility] [font-smooth:always]"
         suppressHydrationWarning
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
