@@ -2,18 +2,15 @@ import { supabase } from "@/lib/supabaseClient"
 
 export type DbOrder = {
   id: string
-  portfolio_id: string
-  user_id: string
+  account_id: string
   symbol: string
-  side: "BUY" | "SELL"
-  type: "MARKET" | "LIMIT" | "STOP_LOSS" | "TAKE_PROFIT"
-  quantity: number
-  limit_price: number | null
-  stop_price: number | null
-  take_profit_price: number | null
-  status: "NEW" | "WORKING" | "PARTIALLY_FILLED" | "FILLED" | "CANCELED" | "REJECTED"
+  market: string | null
+  side: "buy" | "sell" | null
+  order_type: "market" | "limit" | "stop" | null
+  price: number | null
+  quantity: number | null
+  status: string | null
   created_at: string
-  filled_at: string | null
 }
 
 export async function ensureDefaultPortfolio(): Promise<string> {
@@ -24,7 +21,7 @@ export async function ensureDefaultPortfolio(): Promise<string> {
   if (userError || !user) throw new Error("未登录，无法使用持久化模拟盘")
 
   const { data, error } = await supabase
-    .from("portfolios")
+    .from("paper_accounts")
     .select("id")
     .eq("user_id", user.id)
     .limit(1)
@@ -35,12 +32,13 @@ export async function ensureDefaultPortfolio(): Promise<string> {
   if (data?.id) return data.id
 
   const { data: inserted, error: insertError } = await supabase
-    .from("portfolios")
+    .from("paper_accounts")
     .insert({
       user_id: user.id,
-      name: "默认组合",
-      base_currency: "CNY",
-      initial_cash: 100000,
+      name: "Paper Trading Account",
+      currency: "CNY",
+      initial_balance: 1_000_000,
+      cash: 1_000_000,
     })
     .select("id")
     .single()
@@ -49,20 +47,25 @@ export async function ensureDefaultPortfolio(): Promise<string> {
   return inserted.id
 }
 
-export async function insertOrder(row: Omit<DbOrder, "id" | "created_at" | "filled_at">) {
+export async function insertOrder(row: Omit<DbOrder, "id" | "created_at">) {
+  const {
+    data: { user },
+    error: userError,
+  } = await supabase.auth.getUser()
+  if (userError || !user) throw userError ?? new Error("未登录，无法创建订单")
+
   const { data, error } = await supabase
     .from("orders")
     .insert({
-      portfolio_id: row.portfolio_id,
-      user_id: row.user_id,
+      user_id: user.id,
+      account_id: row.account_id,
       symbol: row.symbol,
+      market: row.market ?? "CN",
       side: row.side,
-      type: row.type,
+      order_type: row.order_type,
+      price: row.price,
       quantity: row.quantity,
-      limit_price: row.limit_price,
-      stop_price: row.stop_price,
-      take_profit_price: row.take_profit_price,
-      status: row.status,
+      status: row.status ?? "filled",
     })
     .select("*")
     .single()
