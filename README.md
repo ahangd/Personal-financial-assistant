@@ -6,11 +6,11 @@
 
 ## 项目预览
 
-![FinLounge 项目截图 1](/readme/screenshot-1.png)
+![FinLounge 项目截图 1](./public/readme/screenshot-1.png)
 
-![FinLounge 项目截图 2](/readme/screenshot-2.png)
+![FinLounge 项目截图 2](./public/readme/screenshot-2.png)
 
-![FinLounge 项目截图 3](/readme/screenshot-3.png)
+![FinLounge 项目截图 3](./public/readme/screenshot-3.png)
 
 ## 项目简介
 
