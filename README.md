@@ -4,6 +4,14 @@
 
 这已经不是一个通用的 `shadcn` 模板，而是一套正在成形的投资学习产品原型，主技术栈为 `Next.js 15 + React 19 + shadcn/ui + Supabase + AkShare`。
 
+## 项目预览
+
+![FinLounge 项目截图 1](/readme/screenshot-1.png)
+
+![FinLounge 项目截图 2](/readme/screenshot-2.png)
+
+![FinLounge 项目截图 3](/readme/screenshot-3.png)
+
 ## 项目简介
 
 FinLounge 试图把投资学习拆成几个更具体的动作：
