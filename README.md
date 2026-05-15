@@ -6,7 +6,9 @@
 
 ## 项目预览
 
-[点击观看 Demo 视频](./public/readme/demo.mp4)
+![FinLounge Demo](./public/readme/demo.gif)
+
+[查看高清 Demo 视频](./public/readme/demo.mp4)
 
 ![FinLounge 项目截图 1](./public/readme/screenshot-1.png)
 
